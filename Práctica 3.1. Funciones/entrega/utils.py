@@ -2,9 +2,6 @@ import csv
 from typing import Callable
 
 
-f = './vgsales.csv'
-
-
 def all_registers(
         name_file: str) -> tuple[tuple[str, ...], tuple[tuple[str, ...], ...]]:
     '''Devuelve una tupla que tiene una tupla con los headers del csv 
