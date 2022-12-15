@@ -2,6 +2,7 @@ from typing import Callable
 from statistics import mean
 from utils import all_registers
 
+
 def generarLista(h: tuple,data:tuple)-> list:
     listaJuegos = []
     for row in data:
@@ -10,90 +11,103 @@ def generarLista(h: tuple,data:tuple)-> list:
     
     return listaJuegos
 
-# Lista con los nombres de los juegos
-def  letra_nombres(lista : tuple[str, ...]) -> Callable:
-    def lista_tupla(letra_inicial : str):
+def promedio(precios : str) -> float:
+    prom = 0
+    for i in precios :
+        prom = prom + float(i[1])
+
+    return round((prom / 5),2)
+
+
+# Lista con los nombres de los juegos #1
+def  lista_tupla(lista : tuple[str, ...], actividad : int) -> Callable:
+    
+    #--------------------1-----------------------#
+    def letra_nombres(letra_inicial : str):
         listaNombres = [name[1] for name in lista if name[1][1][0].lower() == letra_inicial.lower() ]
         print(listaNombres[:5])
     
-    return lista_tupla
+    #--------------------2-----------------------#
+    def año_juegos(año : str):
+        print([(name[1],name[3]) for name in lista if name[3][1] == año][:2])
 
+    #--------------------3-----------------------#
+    def plataforma(plataform : str,ordenar : str):
+        listaPlatf = [(name[1],name[2],name[3]) for name in lista if name[2][1].lower() == plataform.lower()]
+        
+        if ordenar == "nombre":
+            listaPlatf.sort(key= lambda x : x[0])
+            print(listaPlatf[:10])
 
+        elif ordenar  == "plataforma":
+            listaPlatf.sort(key= lambda x : x[1])
+            print(listaPlatf[:10])
 
-# Lista de tuplas con el nombre y el año de los juegos
-def second_list_comp(name_file: str):
-    with open(name_file) as csvfile:
-        games = csv.reader(csvfile, delimiter=',')
-        h = next(games)
+        elif ordenar == "año":
+            listaPlatf.sort(key= lambda x : x[2])
+            print(listaPlatf[:10])
 
-        list_games = [(game[h.index("Name")], game[h.index("Year")]) for game in games]
+    #--------------------4-----------------------#
+    def ventas(orden : str):
+        listaProm = [ (name[1], ("Avg_Sales",promedio(name[6:10]))) for name in lista]
+        
+        listt = sorted(listaProm[:7],key = lambda x : x[1][1])
+        if orden == "ascendentes":
+            print(listt[:10])
+        elif orden == "descendentes":
+            listt.reverse()
+            print(listt[:10])
 
-        return list_games
+    #--------------------5-----------------------#
+    def generos(año : str):
+        listaPlatf = [(name[0],name[1],name[4]) for name in lista if name[3][1] == año]
+        listt = sorted(listaPlatf[:10],key = lambda x : int(x[0][1]))
+        print(listt)
 
+    if actividad == 1:
+        return letra_nombres
+    
+    elif actividad == 2:
+        return año_juegos
 
-# Lista de tuplas con el nombre, el año y la plataforma de los juegos
-def third_list_comp(name_file: str):
-    with open(name_file) as csvfile:
-        games = csv.reader(csvfile, delimiter=',')
-        h = next(games)
+    elif actividad == 3:
+        return plataforma
 
-        list_games = [(game[h.index("Name")], game[h.index("Year")], game[h.index("Platform")]) for game in games]
+    elif actividad == 4:
+        return ventas
 
-        return list_games
-
-
-# Lista de tuplas que esten compuestas por
-# las columnas Name y Avg_Sales la cual se obtiene
-# del promedio de las columnas NA_Sales, EU_Sales, JP_Sales, Other_Sales y Global_Sales
-def fourth_list_comp(name_file: str):
-    sales = ['NA_Sales', 'EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales']
-
-    with open(name_file) as csvfile:
-        games = csv.reader(csvfile, delimiter=',')
-        h = list(next(games))
-
-        list_games  =  [(game[h.index("Name")], mean([float(game[h.index(k)]) for k in sales])) for game in games]
-
-        return list_games
-
-
-# Lista de listas con todos lo registros del archivo
-# donde los juegos sean del año 2006 y su rango sea menor a 2000
-def fifth_list_comp(name_file: str):
-    with open(name_file) as csvfile:
-
-        games = csv.reader(csvfile, delimiter=',')
-        h = next(games)
-        list_games = [ game for game in games if game[h.index("Year")] == "2016" and float(game[h.index("Rank")]) < 2000 ]
-
-        return list_games
-
+    elif actividad == 5:
+        return generos
 
 def run():
     h, data = all_registers('./vgsales.csv')
     lista = generarLista(h,data)
 
-    first_list = letra_nombres(lista)
-    first_list("w")
-    first_list("b")
-
-    
-    #print("\n2. Lista de tuplas con el nombre y el año de los juegos.\n", second_list_comp(f)[:10])
-
-    #print(
-    #    "\n3. Lista de tuplas con el nombre, el año y la plataforma de los juegos.\n",
-    #    third_list_comp(f)[:10])
-
-    #print((
-    #    "\n4. Lista de tuplas que esten compuestas por las columnas Name y Avg_Sales\n"
-    #    "la cual se obtiene del promedio de las columnas: "
-    #    " NA_Sales, EU_Sales, JP_Sales, Other_Sales y Global_Sales.\n"),
-    #    fourth_list_comp(f)[:10])
-
-    #print((
-    #    "\n5. Lista de listas con todos lo registros del archivo donde los juegos\n"
-    #    "sean del año 2006 y su rango sea menor a 2000.\n"),
-    #    fifth_list_comp(f)[:10])
+    print("\n #------1.- listas de tuplas con nombres con una letra inicial seleccionada------#\n")
+    main_list = lista_tupla(lista,1)
+    main_list("w")
+    print()
+    main_list("b")
+    print("\n #------2.- lista de tuplas con nombre y con un año seleccionado------#\n")
+    main_list = lista_tupla(lista,2)
+    main_list("2006")
+    print()
+    main_list("2000")
+    print("\n #------3.- lista de tuplas con nombre, año y plataforma seleccionada------#\n")
+    main_list = lista_tupla(lista,3)
+    main_list("wii","nombre")
+    print()
+    main_list("pc","nombre")
+    print("\n #------4.- lista de tuplas con nombre y promedio de las ventas, ordenadas asc o desc------#\n")
+    main_list = lista_tupla(lista,4)
+    main_list("ascendentes")
+    print()
+    main_list("descendentes")
+    print("\n #------5.- lista con rango, nombre y género a partir del año dado y ordenado por rango ------#\n")
+    main_list = lista_tupla(lista,5)
+    main_list("2009")
+    print()
+    main_list("2012")
 
 
 if __name__ == "__main__":
