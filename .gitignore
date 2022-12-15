@@ -142,3 +142,6 @@ Práctica 3.1. Funciones/entrega/Scripts/pip3.exe
 Práctica 3.1. Funciones/entrega/Scripts/python.exe
 Práctica 3.1. Funciones/entrega/Scripts/pythonw.exe
 .gitignore
+
+# vscode
+.vscode/
