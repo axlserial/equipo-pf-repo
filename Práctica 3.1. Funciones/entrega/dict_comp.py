@@ -5,7 +5,7 @@ from statistics import mean
 
 
 # Closure para seleccionar una columna de una tupla.
-def select_column(column: str, h: tuple[str]) -> Callable:
+def select_column(column: str, h: tuple[str, ...]) -> Callable:
 
     def inner(data: tuple):
         return data[h.index(column)]
@@ -14,7 +14,7 @@ def select_column(column: str, h: tuple[str]) -> Callable:
 
 
 # Closure para obtener ciertas columnas de una tupla.
-def select_columns(columns: list[str], h: tuple[str]) -> Callable:
+def select_columns(columns: list[str], h: tuple[str, ...]) -> Callable:
 
     def inner(data: tuple) -> tuple:
         return tuple([data[h.index(c)] for c in columns])
@@ -23,7 +23,7 @@ def select_columns(columns: list[str], h: tuple[str]) -> Callable:
 
 
 # Closure para filtrar una tupla de tuplas por una columna y un valor.
-def filter_column(column: str, value, h: tuple[str]) -> Callable:
+def filter_column(column: str, value, h: tuple[str, ...]) -> Callable:
 
     def inner(data: tuple) -> tuple:
         return tuple([d for d in data if d[h.index(column)] == value])
@@ -32,7 +32,7 @@ def filter_column(column: str, value, h: tuple[str]) -> Callable:
 
 
 # Closure para ordenar una tupla de tuplas por una columna.
-def sort_column(column: str, h: tuple[str], asc=True) -> Callable:
+def sort_column(column: str, h: tuple[str, ...], asc=True) -> Callable:
 
     def inner(data: tuple) -> tuple:
         return tuple(
@@ -48,7 +48,7 @@ def sort_column(column: str, h: tuple[str], asc=True) -> Callable:
 
 # Diccionario con el 'Name' del juego como clave y la 'Platform'
 # del juego como valor.
-def first_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
+def first_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     get_name = select_column("Name", h)
     get_platform = select_column("Platform", h)
 
@@ -59,7 +59,7 @@ def first_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
 
 # Diccionario con el 'Name' del juego como clave y la 'Platform'
 # del juego como valor, que sean del año 2009.
-def second_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
+def second_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     filter_year = filter_column("Year", "2009", h)
     get_name = select_column("Name", h)
     get_platform = select_column("Platform", h)
@@ -73,7 +73,7 @@ def second_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
 
 
 # Diccionario con todos los registros que su 'Publisher' sea Sega
-def third_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
+def third_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     filter_publisher = filter_column("Publisher", "Sega", h)
     get_name = select_column("Name", h)
     get_platform = select_column("Platform", h)
@@ -96,7 +96,7 @@ def third_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
 
 # Diccionario que tiene el 'Name' del juego como clave
 # y sus datos como valor y que 'Rank' sea mayor a 10 y menor a 20
-def fourth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
+def fourth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     get_name = select_column("Name", h)
     get_rank = select_column("Rank", h)
     get_platform = select_column("Platform", h)
@@ -124,7 +124,7 @@ def fourth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str]) -> dict:
 
 # Diccioanrio con el 'Name' del juego como clave
 # y un promedio de sus Sales como valor
-def fifth_dict_comp(data: tuple, h: tuple[str]) -> dict:
+def fifth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     sales_selected = select_columns(
         ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales"], h)
     get_name = select_column("Name", h)

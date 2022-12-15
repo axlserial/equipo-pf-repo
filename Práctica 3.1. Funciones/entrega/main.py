@@ -13,7 +13,7 @@ def main():
 # ------------------ Dict Comps ----------------
 
 
-def print_dicts(h: tuple[str], data: tuple[tuple[str, ...], ...]) -> None:
+def print_dicts(h: tuple[str, ...], data: tuple[tuple[str, ...], ...]) -> None:
     print(
         "1. Diccionario con el 'Name' del juego como clave y la 'Platform' del juego como valor."
     )

@@ -4,7 +4,7 @@ f = './vgsales.csv'
 
 
 def all_registers(
-        name_file: str) -> tuple[tuple[str], tuple[tuple[str, ...], ...]]:
+        name_file: str) -> tuple[tuple[str, ...], tuple[tuple[str, ...], ...]]:
     '''Devuelve una tupla que tiene una tupla con los headers del csv 
     y una tupla de tuplas con todos los registros y todas las columnas del archivo vgsales.csv'''
 
