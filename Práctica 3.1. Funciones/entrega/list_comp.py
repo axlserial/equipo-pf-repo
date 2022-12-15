@@ -1,7 +1,4 @@
 from typing import Callable
-from statistics import mean
-from utils import all_registers
-
 
 def generarLista(h: tuple,data:tuple)-> list:
     listaJuegos = []
@@ -78,37 +75,3 @@ def  lista_tupla(lista : tuple[str, ...], actividad : int) -> Callable:
 
     elif actividad == 5:
         return generos
-
-def run():
-    h, data = all_registers('./vgsales.csv')
-    lista = generarLista(h,data)
-
-    print("\n #------1.- listas de tuplas con nombres con una letra inicial seleccionada------#\n")
-    main_list = lista_tupla(lista,1)
-    main_list("w")
-    print()
-    main_list("b")
-    print("\n #------2.- lista de tuplas con nombre y con un año seleccionado------#\n")
-    main_list = lista_tupla(lista,2)
-    main_list("2006")
-    print()
-    main_list("2000")
-    print("\n #------3.- lista de tuplas con nombre, año y plataforma seleccionada------#\n")
-    main_list = lista_tupla(lista,3)
-    main_list("wii","nombre")
-    print()
-    main_list("pc","nombre")
-    print("\n #------4.- lista de tuplas con nombre y promedio de las ventas, ordenadas asc o desc------#\n")
-    main_list = lista_tupla(lista,4)
-    main_list("ascendentes")
-    print()
-    main_list("descendentes")
-    print("\n #------5.- lista con rango, nombre y género a partir del año dado y ordenado por rango ------#\n")
-    main_list = lista_tupla(lista,5)
-    main_list("2009")
-    print()
-    main_list("2012")
-
-
-if __name__ == "__main__":
-    run()

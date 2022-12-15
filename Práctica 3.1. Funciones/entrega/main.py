@@ -2,12 +2,15 @@ from utils import all_registers
 from pprint import pprint
 import dict_comp as dc
 import set_comp as sc
-
+import list_comp as lc
 
 def main():
     h, data = all_registers('./vgsales.csv')
 
-
+    # List Comprehensions
+    print("-------------------- List Comprehensions --------------------\n")
+    print_list(h, data)
+    print("\n-----------------------------------------------------------------")
     # Diccionary Comprehensions
     print("-------------------- Diccionary Comprehensions --------------------\n")
     print_dicts(h, data)
@@ -16,6 +19,30 @@ def main():
     print("\n-------------------- Set Comprehensions --------------------\n")
     print_sets(h, data)
     print("\n-----------------------------------------------------------------")
+
+
+# ------------------ list Comps ----------------
+
+def print_list(h: tuple[str, ...], data: tuple[tuple[str, ...], ...]) -> None:
+    lista = lc.generarLista(h,data)
+
+    print("\n #------1.- listas de tuplas con nombres con una letra inicial seleccionada------#\n")
+    main_list = lc.lista_tupla(lista,1)
+    main_list("w")
+    print("\n #------2.- lista de tuplas con nombre y con un año seleccionado------#\n")
+    main_list = lc.lista_tupla(lista,2)
+    main_list("2006")
+    print("\n #------3.- lista de tuplas con nombre, año y plataforma seleccionada------#\n")
+    main_list = lc.lista_tupla(lista,3)
+    main_list("pc","nombre")
+    print("\n #------4.- lista de tuplas con nombre y promedio de las ventas, ordenadas asc o desc------#\n")
+    main_list = lc.lista_tupla(lista,4)
+    main_list("ascendentes")
+    print("\n #------5.- lista con rango, nombre y género a partir del año dado y ordenado por rango ------#\n")
+    main_list = lc.lista_tupla(lista,5)
+    main_list("2012")
+
+
 
 
 # ------------------ Dict Comps ----------------
