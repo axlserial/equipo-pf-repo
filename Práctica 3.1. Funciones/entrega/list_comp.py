@@ -16,7 +16,6 @@ def promedio(precios : str) -> float:
     return round((prom / 5),2)
 
 
-# Lista con los nombres de los juegos #1
 def  lista_tupla(lista : tuple[str, ...], actividad : int) -> Callable:
     
     #--------------------1-----------------------#
@@ -34,10 +33,6 @@ def  lista_tupla(lista : tuple[str, ...], actividad : int) -> Callable:
         
         if ordenar == "nombre":
             listaPlatf.sort(key= lambda x : x[0])
-            print(listaPlatf[:10])
-
-        elif ordenar  == "plataforma":
-            listaPlatf.sort(key= lambda x : x[1])
             print(listaPlatf[:10])
 
         elif ordenar == "año":
