@@ -1,13 +1,23 @@
-import utils as ut
+from typing import Callable
 from statistics import mean
+from utils import all_registers
 
+def generarLista(h: tuple,data:tuple)-> list:
+    listaJuegos = []
+    for row in data:
+            iterador = zip(h,row)
+            listaJuegos.append(tuple(iterador))
+    
+    return listaJuegos
 
 # Lista con los nombres de los juegos
-def first_list_comp(name_file: str):
-    tup = ut.all_registers("vgsales.csv")
-    list_games = [game for game in tup]
+def  letra_nombres(lista : tuple[str, ...]) -> Callable:
+    def lista_tupla(letra_inicial : str):
+        listaNombres = [name[1] for name in lista if name[1][1][0].lower() == letra_inicial.lower() ]
+        print(listaNombres[:5])
+    
+    return lista_tupla
 
-    return list_games
 
 
 # Lista de tuplas con el nombre y el año de los juegos
@@ -60,9 +70,13 @@ def fifth_list_comp(name_file: str):
 
 
 def run():
-    f = './vgsales.csv'
+    h, data = all_registers('./vgsales.csv')
+    lista = generarLista(h,data)
 
-    print("1. Lista con los nombres de los juegos.\n", first_list_comp(f)[:10])
+    first_list = letra_nombres(lista)
+    first_list("w")
+    first_list("b")
+
     
     #print("\n2. Lista de tuplas con el nombre y el año de los juegos.\n", second_list_comp(f)[:10])
 
