@@ -19,6 +19,9 @@ def main():
     print("\n-------------------- Set Comprehensions --------------------\n")
     print_sets(h, data)
     print("\n-----------------------------------------------------------------")
+    print("\n-------------------- Set Operations ---------------------------\n")
+    print_operation_sets(h, data)
+    print("\n-----------------------------------------------------------------")
 
 
 # ------------------ list Comps ----------------
@@ -117,6 +120,62 @@ def print_sets(h: tuple[str, ...], data: tuple[tuple[str, ...], ...]) -> None:
         "2016")
     set_five = sc.fifth_set_comp(data, h)
     pprint(set(list(set_five)[:5]))
+
+# ------------------ Set Operations ----------------
+
+def print_operation_sets(h: tuple[str, ...], data: tuple[tuple[str, ...], ...]) -> None:
+    
+    # 1. Obtener el conjunto de las tuplas de los juegos donde su 'Platform' sea 3DS, su 'Publisher' sea Sega
+    # y su nombre no contenga la palabra Sonic.
+
+    A = sc.conjunto_p(data, h) - sc.fourth_set_comp(data, h)
+    print((
+        "\n1. Conjunto de las tuplas de los juegos donde su 'Platform' sea 3DS, "
+        "su 'Publisher' sea Sega y su nombre no contenga la palabra Sonic."))
+    pprint(set(list(A)[:5]))
+
+    # 2. Obtener el conjunto de los 'Publisher' que poseen juegos del genero 'Platform' cuyo
+    # lanzamiento esta entre los años 2013-2016 y los nombres de las plataformas.
+
+    B = sc.fifth_set_comp(data, h).union(sc.first_set_comp(data, h))
+    print((
+        "\n2. Conjunto de los 'Publisher' que poseen juegos del genero 'Platform' "
+        "cuyo lanzamiento esta entre los años 2013-2016 y los nombres de las plataformas."
+    ))
+    pprint(set(list(B)[:5]))
+    
+    # 3. Obtener el conjunto de tuplas que pertenezcan tanto al conjunto A y el resultado
+    # de ejercicio 2 de la sección anterior.
+
+    C = A.intersection(sc.second_set_comp(data, h))
+    print(("\n3. Conjunto de tuplas que pertenezcan tanto al conjunto A "
+           "y el resultado de ejercicio 2 de la sección anterior."))
+    pprint(set(list(C)[:5]))
+
+    # 4. Obtener el conjunto complemento de las plataformas que pertenecen a los resultados
+    # del ejercicio 1 de la sección anterior y el conjunto de la llamada a la función
+    # conjunto_q(f).
+
+    D = sc.conjunto_q(data, h) ^ sc.first_set_comp(data, h)
+    print((
+        "\n4. Conjunto complemento de las plataformas que pertenecen a "
+        "los resultados del ejercicio 1 de la sección anterior "
+        "y el conjunto de la llamada a la función conjunto_q(f)."
+    ))
+    pprint(set(list(D)[:5]))
+
+    # 5. Obtener el conjunto de tuplas donde las ventas de los juegos que se encuentren en el conjunto
+    # del ejercicio 3 de la sección anterior y en el conjunto de la llamda a la función
+    # conjunto_u(f).
+
+    E = sc.third_set_comp(data, h) & sc.conjunto_u(data, h)
+    print(
+        ("\n5. Conjunto de tuplas donde las ventas de los juegos "
+         "que se encuentren en el conjunto del ejercicio 3 de la sección "
+         "anterior y en el conjunto de la llamda a la función conjunto_u(f)."))
+    pprint(set(list(E)[:5]))
+
+#---------------------------------------------------
 
 if __name__ == '__main__':
     main()

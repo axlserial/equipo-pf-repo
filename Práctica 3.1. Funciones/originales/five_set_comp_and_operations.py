@@ -143,6 +143,7 @@ def run():
         "donde su 'Publisher' sea Sega, su 'Platform' sea 3DS y que contengan la palabra Sonic"
     )
     pprint(set(list(fourth_set_comp(f))[:5]))
+    print(len(fourth_set_comp(f)))
 
     print(
         "\n5. Conjunto de los nombres de los 'Publisher' que poseen juegos del "
@@ -161,6 +162,7 @@ def run():
         "\n1. Conjunto de las tuplas de los juegos donde su 'Platform' sea 3DS, "
         "su 'Publisher' sea Sega y su nombre no contenga la palabra Sonic."))
     pprint(set(list(A)[:5]))
+    pprint(len(set(list(A))))
 
     # 2. Obtener el conjunto de los 'Publisher' que poseen juegos del genero 'Platform' cuyo
     # lanzamiento esta entre los años 2013-2016 y los nombres de las plataformas.
@@ -170,6 +172,8 @@ def run():
         "cuyo lanzamiento esta entre los años 2013-2016 y los nombres de las plataformas."
     ))
     pprint(set(list(B)[:5]))
+    pprint(len(set(list(B))))
+
 
     # 3. Obtener el conjunto de tuplas que pertenezcan tanto al conjunto A y el resultado
     # de ejercicio 2 de la sección anterior.
@@ -177,6 +181,7 @@ def run():
     print(("\n3. Conjunto de tuplas que pertenezcan tanto al conjunto A "
            "y el resultado de ejercicio 2 de la sección anterior."))
     pprint(set(list(C)[:5]))
+    print(len(set(list(C))))
 
     # 4. Obtener el conjunto complemento de las plataformas que pertenecen a los resultados
     # del ejercicio 1 de la sección anterior y el conjunto de la llamada a la función
@@ -188,6 +193,7 @@ def run():
         "y el conjunto de la llamada a la función conjunto_q(f)."
     ))
     pprint(set(list(D)[:5]))
+    
 
     # 5. Obtener el conjunto de tuplas donde las ventas de los juegos que se encuentren en el conjunto
     # del ejercicio 3 de la sección anterior y en el conjunto de la llamda a la función
@@ -198,6 +204,7 @@ def run():
          "que se encuentren en el conjunto del ejercicio 3 de la sección "
          "anterior y en el conjunto de la llamda a la función conjunto_u(f)."))
     pprint(set(list(E)[:5]))
+    print(len(set(list(E))))
 
 
 if __name__ == "__main__":
