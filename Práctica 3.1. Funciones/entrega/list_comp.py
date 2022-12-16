@@ -68,5 +68,5 @@ def  lista_tupla(lista : list, actividad : int) -> Callable:
     elif actividad == 4:
         return ventas
 
-    elif actividad == 5:
+    else:
         return generos
