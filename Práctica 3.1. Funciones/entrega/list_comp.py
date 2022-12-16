@@ -16,7 +16,7 @@ def promedio(precios : str) -> float:
     return round((prom / 5),2)
 
 
-def  lista_tupla(lista : tuple[str, ...], actividad : int) -> Callable:
+def  lista_tupla(lista : list, actividad : int):
     
     #--------------------1-----------------------#
     def letra_nombres(letra_inicial : str):
