@@ -96,15 +96,15 @@ def fourth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> d
             "Genre": get_genre(game),
             "Publisher": get_publisher(game),
         }
-        for game in sort_func([
+        for game in sort_func((
             d for d in data if int(get_rank(d)) > 10 and int(get_rank(d)) < 20
-        ])
+        ))
     }
 
     return dict_games
 
 
-# Diccioanrio con el 'Name' del juego como clave
+# Diccionario con el 'Name' del juego como clave
 # y un promedio de sus Sales como valor
 def fifth_dict_comp(data: tuple[tuple[str, ...], ...], h: tuple[str, ...]) -> dict:
     sales_selected = select_columns(
