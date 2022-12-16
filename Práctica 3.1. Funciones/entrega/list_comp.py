@@ -9,7 +9,7 @@ def generarLista(h: tuple,data:tuple)-> list:
     return listaJuegos
 
 def promedio(precios : str) -> float:
-    prom = 0
+    prom : float = 0.0
     for i in precios :
         prom = prom + float(i[1])
 
