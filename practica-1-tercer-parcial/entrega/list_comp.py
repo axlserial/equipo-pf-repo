@@ -11,12 +11,14 @@ def promedio(precios: str) -> float:
 
 def actividades(csvName) -> Callable:
     #-------------Primera accion del generador (Crear la lista de juegos)--------------#
-    print(csvName)
+
     lista = []
-    with open(csvName, newline='') as csvfile:
+    with open(csvName) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            lista.append(row)
-
+                lista.append(row)
 
     yield lista
+
+
+    

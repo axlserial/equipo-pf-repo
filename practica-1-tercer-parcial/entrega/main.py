@@ -2,7 +2,6 @@ from utils import all_registers
 from pprint import pprint
 import list_comp as lc
 
-
 def main():
 
     # List Comprehensions
@@ -20,9 +19,9 @@ def main():
 
 
 def print_list() -> None:
-    dir_csv = './vgsales.csv'
+    dir_csv = "./practica-1-tercer-parcial/entrega/vgsales.csv"
     for i in lc.actividades(dir_csv):
-        print(i)
+        print(i[:1])
 
 if __name__ == '__main__':
     main()
