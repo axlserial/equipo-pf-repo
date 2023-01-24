@@ -8,8 +8,8 @@ from functools import reduce
 # Closure para obtener ciertas columnas de una tupla.
 def select_columns(columns: list[str], h: tuple[str, ...]) -> Callable:
 
-    def inner(data: tuple) -> tuple:
-        return tuple([data[h.index(c)] for c in columns])
+    def inner(data: tuple[str, ...]):
+        return (data[h.index(c)] for c in columns)
 
     return inner
 
