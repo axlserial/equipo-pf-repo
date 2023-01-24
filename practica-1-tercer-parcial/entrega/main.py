@@ -21,7 +21,7 @@ def main():
 def print_list() -> None:
     dir_csv = "./practica-1-tercer-parcial/entrega/vgsales.csv"
     for i in lc.actividades(dir_csv):
-        print(i[:1])
+        print(i[:3])
 
 if __name__ == '__main__':
     main()
