@@ -1,10 +1,6 @@
 from typing import Callable
 import csv
 
-def quitarElementos(diccionario):
-    return {'Rank':diccionario['Rank'], 'Name':diccionario['Name'],'Platform':diccionario['Platform'],'Genre':diccionario['Genre'],'Year':diccionario['Year']}
-
-
 def actividades(csvName) -> Callable:
     #-------------Primera accion del generador (Crear la lista de diccionarios de los juegos)--------------#
 
@@ -19,6 +15,10 @@ def actividades(csvName) -> Callable:
 
 
     #----------Actividad, de la lista extraida(del csv) solo dejar el diccionario con nombre, rango, plataforma, año, género---------#
+
+    #Funcion que recibe un diccionario y regresa solo algunos elementos del mismo
+    def quitarElementos(diccionario):
+        return {'Rank':diccionario['Rank'], 'Name':diccionario['Name'],'Platform':diccionario['Platform'],'Genre':diccionario['Genre'],'Year':diccionario['Year']}
 
     print("-----------Actividad 1, quitar informacion--------")
     yield map(quitarElementos,lista)
