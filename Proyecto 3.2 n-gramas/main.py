@@ -1,10 +1,12 @@
 #Lee el archivo txt , toma cada palabra separada por comas las guarda en una lista y esa lista en una lista principal, en pocas palabras una lista que tiene cada linea en otra lista
-with open('Proyecto 3.2 n-gramas\Ejemplo.txt', 'r') as file:
-    lines = file.readlines()
-    list_of_lists = []
-    for line in lines:
-        words = line.strip().split(',')
-        list_of_lists.append(words)
+def leerArchivo(nombre):
+    with open('Proyecto 3.2 n-gramas\Ejemplo.txt', 'r') as file:
+        lines = file.readlines()
+        list_of_lists = []
+        for line in lines:
+            words = line.strip().split(',')
+            list_of_lists.append(words)
+    return list_of_lists
 
 #Sirve para quitar los numeros iniciales y el igual, para solo dejar las palabras
 def change(element): 
@@ -31,11 +33,11 @@ def separar(linea):
 #---------------------En caso de quererse meter a un main dejar como variable global la secuencia para que pueda ser ocupada en las funcines del map
 
 
-#nombre_archivo = input("Ingresa el nombre del archivo: ")
+nombre_archivo = input("Ingresa el nombre del archivo: ")
 secuencia = int(input("Ingresa el  el tamaño del grama n a utilizar: "))
 #umbral
 #nombre_archivo_sal = input("Ingresa el nombre del archivo saliente: ")
 
-lista_separada = map(separar,map(change,list_of_lists))
+lista_separada = map(separar,map(change,leerArchivo(nombre_archivo)))
 
 print(next(lista_separada))
