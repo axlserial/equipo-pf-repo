@@ -11,8 +11,7 @@ def change(element):
 #la funcion que genera un iterable que tiene separadas las palabras dependiendo del tamaño del grama n
 def separar(linea,secuencia):
     if secuencia > len(linea):
-        print("Es mas grande tamaño del grama n que el tamaño de la linea")
-        return ["no hay tamaño suficiente"]
+        return False
     else:
         lineaNueva = []
         for i in range(0,len(linea)-secuencia+1,1):
@@ -27,17 +26,9 @@ def ordenar(line,secuencia):
 
 #Lee el archivo txt , toma cada palabra separada por comas las guarda en una lista y esa lista en una lista principal, en pocas palabras una lista que tiene cada linea en otra lista
 def leerArchivo(nombre,secuencia):
-    f = open('Proyecto 3.2 n-gramas\Ejemplo.txt','r')
-    while(True):
-        linea = f.readline()
-        linea_Separada = ordenar(linea,secuencia)
-        print(linea_Separada)
-        break
-
-        if not linea:
-            break
-    f.close()
-
+    with open(nombre,'r') as file:
+        listas_separadas = (ordenar(line,secuencia) for line in file)
+        print(next(listas_separadas))
 #---------------------En caso de quererse meter a un main dejar como variable global la secuencia para que pueda ser ocupada en las funcines del map
 
 
