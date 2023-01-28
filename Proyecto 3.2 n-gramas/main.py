@@ -27,11 +27,16 @@ def ordenar(line,secuencia):
 
 #Lee el archivo txt , toma cada palabra separada por comas las guarda en una lista y esa lista en una lista principal, en pocas palabras una lista que tiene cada linea en otra lista
 def leerArchivo(nombre,secuencia):
-    with open('Proyecto 3.2 n-gramas\Ejemplo.txt', 'r') as file:
-        lines = file.readlines()
-        listas_separadas = (ordenar(line,secuencia) for line in lines)
-        #en aqui se envian todos los ngramas en iterables, se puede cambiar para que solo entregue las frecuencias, cambiando el return de arriba
-        print(next(listas_separadas))
+    f = open('Proyecto 3.2 n-gramas\Ejemplo.txt','r')
+    while(True):
+        linea = f.readline()
+        linea_Separada = ordenar(linea,secuencia)
+        print(linea_Separada)
+        break
+
+        if not linea:
+            break
+    f.close()
 
 #---------------------En caso de quererse meter a un main dejar como variable global la secuencia para que pueda ser ocupada en las funcines del map
 
