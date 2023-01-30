@@ -27,7 +27,6 @@ def separar(linea, secuencia):
 def ordenar(line, secuencia):
     words = change(line.strip().split(','))
     linea_separada: list[list[str]] | bool = separar(words, secuencia)
-    #--------->Continuar aqui, se tiene una lista, la lista ya tiene separados los n gramas a partir de ella se puede hacer el conteo de frecuencia
     return linea_separada
 
 
